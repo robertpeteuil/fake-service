@@ -13,6 +13,15 @@ const NodeInnerCustom = ({ node, children, ...otherProps }) => {
     className = "node-error";
   }
 
+  const ips = [];
+
+  // if the node has ip addresses create individual elements for them
+  if(node.properties.ip_addresses !== undefined) {
+    for(var n=0;n<node.properties.ip_addresses.length;n++){
+      ips.push(<div>{node.properties.ip_addresses[n]}</div>);
+    }
+  }
+
   return (
     <Container {...otherProps} className={className}>
       <Row>
@@ -20,6 +29,10 @@ const NodeInnerCustom = ({ node, children, ...otherProps }) => {
       </Row>
       <Row>
         <Col className="node-uri">{node.properties.uri}</Col>
+      </Row>
+      <Row>
+        <Col className="node-key">IP Address</Col>
+          <Col className="node-value">{ips}</Col>
       </Row>
       <Row>
         <Col className="node-key">Duration</Col>
