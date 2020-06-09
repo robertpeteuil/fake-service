@@ -20,11 +20,17 @@ Environment variables:
   SERVER_TYPE  default: 'http'
        Service type: [http or grpc], default:http. Determines the type of service HTTP or gRPC
   MESSAGE  default: 'Hello World'
-       Message to be returned from service
+       Message to be returned from service, can either be a string or valid JSON
   NAME  default: 'Service'
        Name of the service
   LISTEN_ADDR  default: '0.0.0.0:9090'
        IP address and port to bind service to
+  ALLOWED_ORIGINS  default: '*'
+       Comma separated list of allowed origins for CORS requests
+  ALLOWED_HEADERS  default: 'Accept,Accept-Language,Content-Language,Origin,Content-Type'
+       Comma separated list of allowed headers for CORS requests
+  ALLOW_CREDENTIALS  default: 'false'
+       Are credentials allowed for CORS requests
   HTTP_CLIENT_KEEP_ALIVES  default: 'false'
        Enable HTTP connection keep alives for upstream calls
   HTTP_CLIENT_REQUEST_TIMEOUT  default: '30s'
