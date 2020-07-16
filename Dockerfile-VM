@@ -1,6 +1,6 @@
 # This image contains Fake Service Consul and Envoy, it can be used to simulate a Virtual Machine containing the Consul Agent
 # and Envoy running as Daemon processes.
-FROM nicholasjackson/consul-envoy:v1.8.0-v0.14.1
+FROM nicholasjackson/consul-envoy:v1.8.0-v0.12.4
 
 # Setup bash and supervisord etc
 RUN apk add --update bash supervisor curl vim jq 
@@ -27,9 +27,13 @@ ENV CONSUL_HTTP_ADDR=localhost:8500
 ENV CONSUL_SERVER=localhost
 ENV CONSUL_DATACENTER=dc1
 ENV SERVICE_ID=null
+ENV CONSUL_RETRY_INTERVAL=5s 
 
 # add default config folder
 RUN mkdir /config
+
+# data directory for Consul
+RUN mkdir -p /etc/consul
 
 ENTRYPOINT ["/usr/bin/supervisord"]
 CMD ["-c", "/etc/supervisord.conf"]
